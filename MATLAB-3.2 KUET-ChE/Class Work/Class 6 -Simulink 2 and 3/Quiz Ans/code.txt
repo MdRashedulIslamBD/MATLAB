@@ -1,0 +1,38 @@
+%tank 1
+function dh1dt = fcn(h1,h2)
+A=pi*.566^2/4;
+q1=15; %unit m3
+% unit should be same on both sides
+%q1v- m3/s, 2.5-m.m/s-m2/s, h1=m, h2=m
+%2.5*(h1-h2) - m3/s
+q1h= 2.5*(h1-h2);
+q1v=5*h1;
+
+dh1dt=(q1-q1h-q1v)/A;
+
+%tank 2
+function dh2dt = fcn(h1,h2)
+A=pi*.566^2/4;
+q2=10;
+q1h= 2.5*(h1-h2);
+q2v=5*h2;
+
+dh2dt=(q2+q1h-q2v)/A;
+
+%tank 3
+function dh3dt = fcn(h1,h3,h4)
+A=pi*.566^2/4;
+
+q3h= 2.5*(h3-h4);
+q1v=5*h1;
+
+dh3dt=(q1v-q3h)/A;
+
+%tank 4
+function dh4dt = fcn(h2,h3,h4)
+A=pi*.566^2/4;
+
+q2v=5*h2;
+q4h=2.5*h4;
+q3h= 2.5*(h3-h4);
+dh4dt=(q2v+q3h-q4h)/A;
